@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diretivas v-on</title>
+</head>
+
+<body>
+    <div id="directivees">
+        <p v-on:click="reverseMessage1(1, message1)">{{ message1 }}</p>
+        <p @click="reverseMessage1(2, message2)">{{ message2 }}</p>
+        <hr />
+        <p>Filtro de pessoas com Vue: <input type="text" placeholder="Filtrar Pessoas" @keyup="filterPersons" /></p>
+        <ul>
+            <li v-for="(value, key) in personsFiltred">{{ value }}</li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: '#directivees',
+            data: {
+                message1: "Utilizando 'v-on'",
+                message2: "Utilizando 'v-on' da forma abreviada (com @metodo)",
+                persons: ['Bruno', 'Eloise', 'Eduardo', 'Natália', 'Emilene'],
+                personsFiltred: []
+            },
+            methods: {
+                reverseMessage1(numMessage, informedMessage) {
+                    if (numMessage == 1) {
+                        this.message1 = informedMessage.split('').reverse().join('');
+                    } else {
+                        this.message2 = informedMessage.split('').reverse().join('');
+                    }
+                },
+                filterPersons(event) {
+                    /** este 'filter' devolve um array e sobrescreve o 'personsFiltred' */
+                    this.personsFiltred = this.persons.filter(name => {
+                        /** usado 'toUpperCase' para fazer que o JS procure corretamente a palavra. Lembrando que o JS é CaseSensitive, diferencia maiúsculas e minúsculas */
+                        /** O método includes() determina se um array contém um determinado elemento, retornando true ou false */
+                        return name.toUpperCase().includes(event.target.value.toUpperCase());
+                    });
+                }
+            },
+            created() {
+                this.personsFiltred = this.persons;
+            }
+        });
+    </script>
+</body>
+
+</html>

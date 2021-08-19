@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diretivas Personalizada</title>
+</head>
+
+<body>
+    <div id="directives">
+        <h1 v-upper>{{ name }}</h1>
+        <h2 v-capitalize v-color v-onhover>{{ directive2 }}</h2>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+    <script>
+        Vue.directive('upper', {
+            inserted(el) {
+                el.innerText = el.innerText.toUpperCase();
+            }
+        });
+
+        Vue.directive('onhover', {
+            bind(el, binding) {
+                el.onmouseover = function () {
+                    el.style.fontSize = "100px";
+                };
+                el.onmouseout = function () {
+                    el.style.fontSize = "25px";
+                };
+            }
+        });
+
+        let app = new Vue({
+            el: '#directives',
+            data: {
+                name: "Bruno Nogueira Delic",
+                'directive2': 'Várias diretivas no mesmo elemento'
+            },
+            directives: {
+                capitalize: function (element) {
+                    let words = element.innerText.split(' ');
+                    words.forEach((text, index) => {
+                        words[index] = text.charAt(0).toUpperCase() + text.slice(1);
+                    });
+
+                    element.innerText = words.join(' ');
+                },
+                color: function (element) {
+                    console.log('Duas diretivas no mesmo elemento');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

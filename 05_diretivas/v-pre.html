@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diretivas v-pre</title>
+</head>
+
+<body>
+    <div id="directivees">
+        <p>O 'v-pre' funciona para não interpretar como código Vue a string ou os eventos informados:</p>
+        <h2 v-pre>{{ message }}</h2>
+        <p v-on:click="alert('É nóis!!!')" v-pre>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit optio perspiciatis adipisci temporibus, amet natus nobis explicabo distinctio iure incidunt delectus ipsam eaque reprehenderit ducimus culpa similique commodi debitis? Cumque!</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: '#directivees',
+            data: {
+                message: "Bruno Nogueira Delic"
+            }
+        });
+    </script>
+</body>
+
+</html>

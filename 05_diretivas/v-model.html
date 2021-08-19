@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diretivas v-model</title>
+</head>
+
+<body>
+    <div id="directivees">
+        <h3 :style="{ fontSize: textSize + 'px' }">Bruno Nogueira</h3>
+        <input type="text" :placeholder="placeholder" v-model="textSize" />
+        <h4 :style="{ color: textColor }">Que a força esteja com vc</h4>
+        <input type="text" :placeholderColor="placeholder" v-model="textColor" value="#f00" />
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: '#directivees',
+            data: {
+                textSize: 10,
+                placeholder: "Digite o tamanho do texto",
+                textColor: "f00",
+                placeholderColor: "Digite a cor do texto"
+            }
+        });
+    </script>
+</body>
+
+</html>

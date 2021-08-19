@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diretivas v-for</title>
+</head>
+
+<body>
+    <div id="directivees">
+        <h2>Cidades do Mundo (array):</h2>
+        <ol>
+            <li v-for="city in cities1">{{ city }}</li>
+        </ol>
+        <h2>Cidades do Mundo (objeto):</h2>
+        <ol>
+            <li v-for="item in cities2">{{ item.city + ' - ' + item.country }}</li>
+        </ol>
+        <h2>Filmes (key - value):</h2>
+        <ul>
+            <li v-for="(value, key) in movies">{{ key + ". " + value }}</li>
+        </ul>
+        <h2>Empresa (key - index - value)</h2>
+        <p v-for="(value, index, key) in company">
+            {{key + ' - ' + index + ': ' + value}}
+        </p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: '#directivees',
+            data: {
+                cities1: [
+                    'Nova York',
+                    'São Paulo',
+                    'Londres',
+                    'Rio de Janeiro'
+                ],
+                cities2: [{
+                    city: 'Nova York',
+                    country: 'EUA'
+                }, {
+                    city: 'São Paulo',
+                    country: 'BR'
+                }, {
+                    city: 'Londres',
+                    country: 'ENG'
+                }, {
+                    city: 'Rio de Janeiro',
+                    country: 'BR'
+                }],
+                movies: [
+                    'Matrix',
+                    'Senhor dos Anéis',
+                    'Vingadores'
+                ],
+                company: {
+                    name: "Google",
+                    year: 2021,
+                    creator: "Brulindo"
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
