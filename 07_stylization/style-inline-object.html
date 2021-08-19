@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS - Estilização em linha - Objeto</title>
+</head>
+
+<body>
+    <div id="styles">
+        <input type="text" placeholder="Digite o tamanho da fonte" v-model="fontSizeProp" v-id="111" />
+        <h2 :style="{ fontSize:fontSizeProp + 'pt'}">{{ name }}</h2>
+        <hr />
+        <h2>Digite a cor que desejar (red, blue ou green):</h2>
+        <label>Utilizando onBlur: <input type="text" placeholder="Digite a cor que desejar (blue, red ou green)" v-on:blur="fontColor($event.target.value)" v-id="222" /></label>
+        <br />
+        <br />
+        <div :style="{color: returnColor}">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo ratione corrupti odio tempora expedita deserunt cum ex, aliquid ipsum nulla doloremque, iusto dolor nam incidunt error. Recusandae cumque vitae sed.
+        </div>
+        <br />
+        <label>Utilizando onChange (v-model - qualquer nome das 3 cores ou um rgb qualquer): <input type="text" placeholder="Digite a cor que desejar (blue, red ou green)" v-model="returnColor" v-id="333" /></label>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script>
+        let app = new Vue({
+            el: '#styles',
+            data: {
+                name: "Bruno Nogueira - Programador Vue JS",
+                fontSizeProp: 20,
+                styleRed: "F00",
+                styleBlue: "00F",
+                styleGreen: "0F0",
+                returnColor: "0f0"
+            },
+            methods: {
+                fontColor(color) {
+                    switch (color) {
+                        case 'red':
+                            this.returnColor = this.styleRed;
+                            break;
+                        case 'blue':
+                            this.returnColor = this.styleBlue;
+                            break;
+                        case 'green':
+                            this.returnColor = this.styleGreen;
+                            break;
+                        default:
+                            this.returnColor = '000';
+                            break;
+                    }
+
+                    if (this.returnColor != '000') {
+                        this.returnColor = `#${this.returnColor}`;
+                    } else {
+                        this.returnColor = '#000';
+                        console.log('Cor não encontrada: ' + this.returnColor);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

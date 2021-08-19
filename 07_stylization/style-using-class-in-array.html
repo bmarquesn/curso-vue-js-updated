@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue JS - Estilização com Array</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <style type="text/css">
+        .selected {
+            text-decoration: underline;
+        }
+
+        .onHover {
+            text-decoration: underline;
+        }
+
+        .onLeave {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="styles">
+        <table class="table table-bordered table-striped">
+            <tr v-for="(citie, key) in cities">
+                <td :class="[selectedClass, statusClass]">{{ (key+1) + " - " + citie }}</td>
+            </tr>
+        </table>
+        <hr />
+        <table class="table table-bordered table-striped">
+            <tr v-for="(citie, key) in cities">
+                <td :class="[selectedClass, error ? statusErrorClass : statusClass]">{{ (key+1) + " - " + citie }}</td>
+            </tr>
+        </table>
+        <p><a href="">Teste link on hover - on leave</a>
+    </div>
+    <script src=" https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script>
+        let app = new Vue({
+            el: '#styles',
+            data: {
+                cities: [
+                    'Orlando',
+                    'Londres',
+                    'Sidney'
+                ],
+                selectedClass: 'selected',
+                statusClass: 'alert-success',
+                statusErrorClass: 'alert-danger',
+                error: false
+            }
+        });
+    </script>
+</body>
+
+</html>

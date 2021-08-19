@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS - Estilização com múltiplos valores - Objeto</title>
+</head>
+
+<body>
+    <div id="styles">
+        <h2>{{ name }}</h2>
+        <div :style="{ display: displayStyle, color: colorStyle, textAlign: textAlign }">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, laboriosam consequatur sequi velit consectetur illum sed magni aut delectus facere harum sint asperiores, vero, nobis tenetur beatae officia tempora. Reprehenderit.</div>
+    </div>
+    <script src=" https://cdn.jsdelivr.net/npm/vue@2.6">
+    </script>
+    <script>
+        let app = new Vue({
+            el: '#styles',
+            data: {
+                name: "Bruno Nogueira - Programador Vue JS",
+                displayStyle: [
+                    '-webkit-box',
+                    '-moz-box-flex',
+                    'ms-flexbox'
+                ],
+                colorStyle: [
+                    '#ff0',
+                    '#f00',
+                    '#0f0'
+                ],
+                textAlign: [
+                    'center',
+                    'justify',
+                    'right'
+                ]
+            }
+        });
+    </script>
+</body>
+
+</html>

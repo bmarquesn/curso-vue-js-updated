@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue JS - Estilização com valores - Array</title>
+</head>
+
+<body>
+    <div id="styles">
+        <h2>{{ name }}</h2>
+        <div :style="[style1, style2]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, laboriosam consequatur sequi velit consectetur illum sed magni aut delectus facere harum sint asperiores, vero, nobis tenetur beatae officia tempora. Reprehenderit.</div>
+        <p><a href="" :title="titleLink" :style="styleLink">Teste novo link estilizado pelo Vue</a></p>
+    </div>
+    <script src=" https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script>
+        let app = new Vue({
+            el: '#styles',
+            data: {
+                name: "Bruno Nogueira - Programador Vue JS",
+                titleLink: "Descrição link teste",
+                style1: {
+                    fontSize: '12pt'
+                },
+                style2: {
+                    color: 'orange'
+                },
+                hovered: false,
+                styleLink: [{
+                    color: '#0000ff',
+                    textDecoration: 'none'
+                }]
+            }
+        });
+    </script>
+</body>
+
+</html>
