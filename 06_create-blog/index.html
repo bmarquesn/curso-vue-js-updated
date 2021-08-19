@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício Blog</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!--
+        1 - Adicionar o Vue.js no projeto
+    	2 - Criar lógica de login e logout no Blog
+    	3 - Trazer os posts do Blog de maneira dinâmica
+        4 - Exibir o conteúdo do post apenas até 200 caracteres
+     -->
+</head>
+
+<body>
+    <div id="blog-content">
+        <header>
+            <div class="container">
+                <nav class="navbar">
+                    <a href="#" class="text-center logo">
+                        <img src="./assets/img/logo.svg" alt="Hcode Treinamentos" />
+                        Blog
+                    </a>
+                    <div id="do-login" v-if="!logged" key="notLogged">
+                        <a href="#" class="login bg-primary text-white" v-on:click.prevent="doLogin(true)">Fazer login</a>
+                    </div>
+                    <div id="logged" v-else key="logged">
+                        <a href="#" class="logout bg-danger text-white" v-on:click.prevent="doLogin(false)">Fazer Logout</a>
+                    </div>
+                </nav>
+                <h4 style="text-align: right;" v-if="logged">Seja Bem Vindo <strong>{{ name }}</strong></h4>
+            </div>
+        </header>
+        <section class="posts" v-if="logged">
+            <div class="container">
+                <div class="row post-item" v-for="(post, key) in posts">
+                    <div class="col-11">
+                        <img :src="post.img" :alt="post.title" />
+                        <h2>{{ post.title + ' - ' + (key + 1) }}</h2>
+                        <p v-if="post.resum" key="postExpanded">
+                            {{ post.content | truncate(250) }}<br />
+                            <a href="#" v-on:click.prevent="expandPost(false, key)">Exibir mais</a>
+                        </p>
+                        <p v-else key="postColapsed">
+                            {{ post.content }}
+                            <br />
+                            <a href="#" v-on:click.prevent="expandPost(true, key)">Exibir menos</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            Bruno Nogueira - programador Vue JS
+        </footer>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+<script>
+    let app = new Vue({
+        el: '#blog-content',
+        data: {
+            logged: false,
+            name: 'Bruno Nogueira',
+            posts: [{
+                img: './assets/img/post1.webp',
+                title: 'Post',
+                resum: true,
+                content: `
+                    Este post é um é um guia passo a passo para você aprender a hospedar o seu banco de dados MySQL no Google Cloud SQL.
+                    Obviamente você precisa de uma conta no Google e um cartão de crédito para ativar o faturamento. Se for a primeira vez o Google irá te dar $300 para experimentar qualquer serviço, assim você pode aprender, conhecer e até avaliar os preços cobrados.
+                    Todos os serviços que você configura no GCloud ficam agrupados por projetos, então a primeira coisa a se fazer é criar ou selecionar um projeto.
+                `
+            }, {
+                img: './assets/img/post2.webp',
+                title: 'Post',
+                resum: true,
+                content: `
+                    Este post é um é um guia passo a passo para você aprender a hospedar o seu banco de dados MySQL no Google Cloud SQL.
+                    Obviamente você precisa de uma conta no Google e um cartão de crédito para ativar o faturamento. Se for a primeira vez o Google irá te dar $300 para experimentar qualquer serviço, assim você pode aprender, conhecer e até avaliar os preços cobrados.
+                    Todos os serviços que você configura no GCloud ficam agrupados por projetos, então a primeira coisa a se fazer é criar ou selecionar um projeto.
+                `
+            }, {
+                img: './assets/img/post3.webp',
+                title: 'Post',
+                resum: true,
+                content: `
+                    Este post é um é um guia passo a passo para você aprender a hospedar o seu banco de dados MySQL no Google Cloud SQL.
+                    Obviamente você precisa de uma conta no Google e um cartão de crédito para ativar o faturamento. Se for a primeira vez o Google irá te dar $300 para experimentar qualquer serviço, assim você pode aprender, conhecer e até avaliar os preços cobrados.
+                    Todos os serviços que você configura no GCloud ficam agrupados por projetos, então a primeira coisa a se fazer é criar ou selecionar um projeto.
+                `
+            }, {
+                img: './assets/img/post4.webp',
+                title: 'Post',
+                resum: true,
+                content: `
+                    Este post é um é um guia passo a passo para você aprender a hospedar o seu banco de dados MySQL no Google Cloud SQL.
+                    Obviamente você precisa de uma conta no Google e um cartão de crédito para ativar o faturamento. Se for a primeira vez o Google irá te dar $300 para experimentar qualquer serviço, assim você pode aprender, conhecer e até avaliar os preços cobrados.
+                    Todos os serviços que você configura no GCloud ficam agrupados por projetos, então a primeira coisa a se fazer é criar ou selecionar um projeto.
+                `
+            }]
+        },
+        methods: {
+            doLogin: function (login) {
+                this.logged = login;
+            },
+            expandPost: function (expand, post) {
+                this.posts[post].resum = expand;
+            }
+        }
+    });
+</script>
+
+</html>
