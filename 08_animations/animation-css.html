@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aiomações CSS (Animações)</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        /** first example */
+        .animation-first-enter-active {
+            animation: animation_first 1s;
+        }
+
+        .animation-first-leave-active {
+            animation: animation_first 1s reverse;
+        }
+
+        @keyframes animation_first {
+            from {
+                background: #fff;
+            }
+
+            to {
+                background: #999;
+            }
+        }
+
+        /** second example */
+        .animation-second-enter-active {
+            animation: animation_second 1s;
+        }
+
+        .animation-second-leave-active {
+            animation: animation_second 1.5s reverse;
+        }
+
+        @keyframes animation_second {
+            0% {
+                background-color: #fff;
+                font-size: 12pt;
+            }
+
+            50% {
+                background-color: #f00;
+                font-size: 25pt;
+                ;
+            }
+
+            100% {
+                background-color: #fff;
+                font-size: 12pt;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="animations">
+        <transition name="animation-first">
+            <h2 v-if="show">Bruno Nogueira - Programador Vue - Animações</h2>
+        </transition>
+        <hr />
+        <transition name="animation-second">
+            <div v-if="show2">Vue Js é demais!!!</div>
+        </transition>
+        <!-- mesma lógica de um toggle -->
+        <button @click="show2 = !show2">Clique aqui</button>
+    </div>
+    <script src=" https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script>
+        let app = new Vue({
+            el: '#animations',
+            data: {
+                show: true,
+                show2: false
+            }
+        });
+    </script>
+</body>
+
+</html>

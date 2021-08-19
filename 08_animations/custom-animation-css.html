@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animações Personalizadas / Padronizadas CSS</title>
+    <link rel="stylesheet" href="node_modules/animate.css/animate.min.css" />
+</head>
+
+<body>
+    <div id="animations">
+        <!-- transition name="animation-first" enter-active-class="animated fadeInLeft" leave-active-class="animated rotateOut" -->
+        <transition name="animation-first" enter-active-class="animated zoomIn" leave-active-class="animated zoomOutDown">
+            <h2 v-if="show">Bruno Nogueira - Programador Vue - Animações</h2>
+        </transition>
+        <!-- mesma lógica de um toggle -->
+        <button @click="show = !show">Clique aqui</button>
+    </div>
+    <script src=" https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+    <script>
+        let app = new Vue({
+            el: '#animations',
+            data: {
+                show: true
+            }
+        });
+    </script>
+</body>
+
+</html>
