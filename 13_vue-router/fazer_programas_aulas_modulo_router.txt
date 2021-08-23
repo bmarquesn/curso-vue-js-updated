@@ -1,0 +1,2 @@
+OK
+Agora fazer um projeto próprio com backend Laravel e front Vue
