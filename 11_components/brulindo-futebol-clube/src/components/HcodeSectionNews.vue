@@ -1,7 +1,6 @@
 <template>
     <section>
         <div class="container">
-            <!-- <HcodeSectionNewsIndividual /> -->
             <hcode-section-news-individual
                 img-name="news1.jpg"
                 img-info="Notícia 1"
